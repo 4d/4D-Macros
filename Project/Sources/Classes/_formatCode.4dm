@@ -1,0 +1,41 @@
+Class extends _macros
+
+Class constructor
+	
+	Super:C1705()
+	
+	// === === === === === === === === === === === === === === === === === === === === === === === === === ===
+	// Replace declaration lines using the old “(_o_)C_xxx” syntax with the new “var ... type”.
+Function C_2var()
+	
+	var $code : Text:=This:C1470.method  //This.withSelection ? This.highlighted : This.method
+	
+	var $pattern : Text:="(?-msi){C_}\\((?![\\w\\s]+;\\s*\\$\\{?\\d+\\}?)([^\\)]*)\\)"
+	$code:=This:C1470.rgx.setTarget($code).setPattern(Replace string:C233($pattern; "{C_}"; Command name:C538(604))).substitute("var \\1 : Blob")
+	$code:=This:C1470.rgx.setTarget($code).setPattern(Replace string:C233($pattern; "{C_}"; Command name:C538(305))).substitute("var \\1 : Boolean")
+	$code:=This:C1470.rgx.setTarget($code).setPattern(Replace string:C233($pattern; "{C_}"; Command name:C538(1488))).substitute("var \\1 : Collection")
+	$code:=This:C1470.rgx.setTarget($code).setPattern(Replace string:C233($pattern; "{C_}"; Command name:C538(307))).substitute("var \\1 : Date")
+	$code:=This:C1470.rgx.setTarget($code).setPattern(Replace string:C233($pattern; "{C_}"; Command name:C538(283))).substitute("var \\1 : Integer")
+	$code:=This:C1470.rgx.setTarget($code).setPattern(Replace string:C233($pattern; "{C_}"; Command name:C538(1216))).substitute("var \\1 : Object")
+	$code:=This:C1470.rgx.setTarget($code).setPattern(Replace string:C233($pattern; "{C_}"; Command name:C538(286))).substitute("var \\1 : Picture")
+	$code:=This:C1470.rgx.setTarget($code).setPattern(Replace string:C233($pattern; "{C_}"; Command name:C538(301))).substitute("var \\1 : Pointer")
+	$code:=This:C1470.rgx.setTarget($code).setPattern(Replace string:C233($pattern; "{C_}"; Command name:C538(285))).substitute("var \\1 : Real")
+	$code:=This:C1470.rgx.setTarget($code).setPattern(Replace string:C233($pattern; "{C_}"; Command name:C538(284))).substitute("var \\1 : Text")
+	$code:=This:C1470.rgx.setTarget($code).setPattern(Replace string:C233($pattern; "{C_}"; Command name:C538(306))).substitute("var \\1 : Time")
+	$code:=This:C1470.rgx.setTarget($code).setPattern(Replace string:C233($pattern; "{C_}"; Command name:C538(1683))).substitute("var \\1")
+	
+	// Return modified code
+	If (Position:C15("var"; $code)=1)
+		
+		// Turn around:
+		// "<caret/>var …" remove the space after the keyword var
+		This:C1470.paste($code; False:C215)
+		
+	Else 
+		
+		// Place cursor at start of method
+		This:C1470.paste(This:C1470.caret+$code; False:C215)
+		
+	End if 
+	
+	This:C1470.tokenise()
