@@ -8,9 +8,9 @@ Class constructor
 	// Replace declaration lines using the old “(_o_)C_xxx” syntax with the new “var ... type”.
 Function C_2var()
 	
-	var $code : Text:=This:C1470.method  //This.withSelection ? This.highlighted : This.method
+	var $pattern : Text:="(?-msi)(?<!//)(?<!//\\s){C_}\\((?![\\w\\s]+;\\s*\\$\\{?\\d+\\}?)([^\\)]*)\\)"
 	
-	var $pattern : Text:="(?-msi){C_}\\((?![\\w\\s]+;\\s*\\$\\{?\\d+\\}?)([^\\)]*)\\)"
+	var $code : Text:=This:C1470.fullMethodText
 	$code:=This:C1470.rgx.setTarget($code).setPattern(Replace string:C233($pattern; "{C_}"; Command name:C538(604))).substitute("var \\1 : Blob")
 	$code:=This:C1470.rgx.setTarget($code).setPattern(Replace string:C233($pattern; "{C_}"; Command name:C538(305))).substitute("var \\1 : Boolean")
 	$code:=This:C1470.rgx.setTarget($code).setPattern(Replace string:C233($pattern; "{C_}"; Command name:C538(1488))).substitute("var \\1 : Collection")
@@ -24,18 +24,4 @@ Function C_2var()
 	$code:=This:C1470.rgx.setTarget($code).setPattern(Replace string:C233($pattern; "{C_}"; Command name:C538(306))).substitute("var \\1 : Time")
 	$code:=This:C1470.rgx.setTarget($code).setPattern(Replace string:C233($pattern; "{C_}"; Command name:C538(1683))).substitute("var \\1")
 	
-	// Return modified code
-	If (Position:C15("var"; $code)=1)
-		
-		// Turn around:
-		// "<caret/>var …" remove the space after the keyword var
-		This:C1470.paste($code; False:C215)
-		
-	Else 
-		
-		// Place cursor at start of method
-		This:C1470.paste(This:C1470.caret+$code; False:C215)
-		
-	End if 
-	
-	This:C1470.tokenise()
+	This:C1470.fullMethodText:=This:C1470.cursorOnFirstLine($code)

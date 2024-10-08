@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ macOS,Windows ]
+        os: [ macos-latest, windows-latest ]
     runs-on: ${{ matrix.os }}
     steps:
     - name: Checkout
@@ -26,5 +26,4 @@ jobs:
         version: vcs
         build: official
         token: ${{ secrets.DLTK }}
-        
-        
+

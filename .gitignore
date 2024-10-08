@@ -79,3 +79,6 @@ DEV/
 #--------------------------------
 .DS_Store
 Project/Sources/dependencies.json
+*.dmg
+BUILD/4D-Macros.dmg
+BUILD/Components/4D Macros.4dbase/Resources/InfoPlist.strings
