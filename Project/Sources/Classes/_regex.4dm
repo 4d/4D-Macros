@@ -45,6 +45,8 @@ Function setTarget($target) : cs:C1710._regex
 	// *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
 Function _setTarget($target)
 	
+	This:C1470.success:=True:C214
+	
 	Case of 
 			
 			//…………………………………………………………………………………………
@@ -107,6 +109,7 @@ Function set pattern($pattern : Text)
 Function setPattern($pattern : Text) : cs:C1710._regex
 	
 	This:C1470._pattern:=$pattern
+	This:C1470.success:=True:C214
 	
 	return This:C1470
 	
@@ -441,6 +444,8 @@ Function substitute($replacement : Text; $count : Integer; $position : Integer) 
 	
 	This:C1470.searchTime:=This:C1470._elapsedTime()
 	
+	This:C1470.success:=True:C214
+	
 	return $replacedText
 	
 	// === === === === === === === === === === === === === === === === === === === === === === === === === ===
@@ -466,26 +471,6 @@ Function get lastError() : Object
 		return This:C1470.errors[This:C1470.errors.length-1]
 		
 	End if 
-	
-	// MARK:-[INTEGRATED USEFUL REGEX]
-	
-	// === === === === === === === === === === === === === === === === === === === === === === === === === ===
-	// Returns the number of words in a string
-Function countWords($target : Text) : Integer
-	
-	This:C1470.target:=$target || This:C1470.target
-	This:C1470.pattern:="(?mi-s)((?:[^[:punct:]\\$\\s[:cntrl:]'‘’]+[’'][^[:punct:]\\$\\s[:cntrl:]'‘’]+)|[^[:punct:]\\s[:cntrl:]'‘’\\$]+)"
-	
-	return This:C1470.extract().length
-	
-	// === === === === === === === === === === === === === === === === === === === === === === === === === ===
-	// Validating an e-mail address
-Function validateMail($target : Text) : Boolean
-	
-	This:C1470.target:=$target || This:C1470.target
-	This:C1470.pattern:="^([-a-zA-Z0-9_]+(?:\\.[-a-zA-Z0-9_]+)*)(?:@)([-a-zA-Z0-9\\._]+(?:\\.[a-zA-Z0-9]{2,}"+")+)$"
-	
-	return This:C1470.match()
 	
 	// MARK:-
 	// *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***

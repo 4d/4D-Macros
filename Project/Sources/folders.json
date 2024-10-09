@@ -1,3 +1,24 @@
 {
+	"# 🚧 DEV": {
+		"methods": [
+			"Method4",
+			"Method5"
+		]
+	},
+	"📚LIBRAIRIES": {
+		"classes": [
+			"_regex"
+		]
+	},
+	"📝 METHODS": {
+		"methods": [
+			"_MACROS"
+		],
+		"classes": [
+			"_formatCode",
+			"_macros"
+		]
+	},
+	"🪪 FORMS": {},
 	"trash": {}
 }

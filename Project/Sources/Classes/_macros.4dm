@@ -1,17 +1,21 @@
 property title : Text
 property rgx : cs:C1710._regex
 property caret : Text
+
 property _highlighted : Boolean
 
 Class constructor()
 	
 	This:C1470.title:=Get window title:C450(Frontmost window:C447)
+	
+	// 📦 Delegates
 	This:C1470.rgx:=cs:C1710._regex.new()
 	
 	var $t : Text
 	GET MACRO PARAMETER:C997(Highlighted method text:K5:18; $t)
 	This:C1470._highlighted:=Length:C16($t)>0
 	
+	//⚠️ Make a concatenation to prevent 4D from interpreting the ‘caret’ tag in this code
 	This:C1470.caret:="<caret/"+">"
 	
 	// MARK:- [IN/OUT]
@@ -67,11 +71,11 @@ Function set code($code : Text)
 	
 	SET MACRO PARAMETER:C998(This:C1470._highlighted ? Highlighted method text:K5:18 : Full method text:K5:17; $code)
 	
-	// MARK:-[
+	// MARK:-[MACROS]
 	// === === === === === === === === === === === === === === === === === === === === === === === === === ===
-Function C_xx2var()
+Function C_xx2var() : Boolean
 	
-	cs:C1710._formatCode.new().C_2var()
+	return cs:C1710._formatCode.new().C_2var()
 	
 	// MARK:- 
 	// === === === === === === === === === === === === === === === === === === === === === === === === === ===
@@ -94,7 +98,37 @@ Function split($useSelection : Boolean) : Collection
 	// Place cursor at the end of the first line
 Function cursorOnFirstLine($code : Text) : Text
 	
+	$code:=$code || This:C1470.fullMethodText
+	
 	return Replace string:C233($code; "\r"; This:C1470.caret+"\r"; 1)
+	
+	// === === === === === === === === === === === === === === === === === === === === === === === === === ===
+	// Place cursor at the end of the first line
+Function cursorAtEnd($code : Text; $newLineAtTheEnd : Boolean) : Text
+	
+	$code:=$code || This:C1470.fullMethodText
+	
+	If ($newLineAtTheEnd)
+		
+		$code:=This:C1470.newLineAtTheEnd($code)
+		
+	End if 
+	
+	return $code+This:C1470.caret
+	
+	// === === === === === === === === === === === === === === === === === === === === === === === === === ===
+	// If necessary, add an empty line at the end of the method
+Function newLineAtTheEnd($code : Text) : Text
+	
+	$code:=$code || This:C1470.fullMethodText
+	
+	If ($code[[Length:C16($code)]]#"\r")
+		
+		$code+="\r"
+		
+	End if 
+	
+	return $code
 	
 	// === === === === === === === === === === === === === === === === === === === === === === === === === ===
 	// Force tokenisation of the foreground method

@@ -4,7 +4,7 @@
   <macro name="-" in_menu="true" type_ahead="false">
     <text/>
   </macro>
-  <macro name="C_xxx To var" in_menu="true" type_ahead="false" version="2">
+  <macro name="C_xxx -> var" in_menu="true" type_ahead="false" version="2">
     <text><method>_MACROS("C_xx2var")</method> </text>
   </macro>
   <macro name="-" in_menu="true" type_ahead="false">

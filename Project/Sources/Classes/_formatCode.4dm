@@ -5,12 +5,13 @@ Class constructor
 	Super:C1705()
 	
 	// === === === === === === === === === === === === === === === === === === === === === === === === === ===
-	// Replace declaration lines using the old “(_o_)C_xxx” syntax with the new “var ... type”.
-Function C_2var()
+	// Replace declaration lines using the old “(_o_)C_xxx(...)” syntax with the new “var ... : type”.
+Function C_2var() : Boolean
 	
 	var $pattern : Text:="(?-msi)(?<!//)(?<!//\\s){C_}\\((?![\\w\\s]+;\\s*\\$\\{?\\d+\\}?)([^\\)]*)\\)"
 	
 	var $code : Text:=This:C1470.fullMethodText
+	
 	$code:=This:C1470.rgx.setTarget($code).setPattern(Replace string:C233($pattern; "{C_}"; Command name:C538(604))).substitute("var \\1 : Blob")
 	$code:=This:C1470.rgx.setTarget($code).setPattern(Replace string:C233($pattern; "{C_}"; Command name:C538(305))).substitute("var \\1 : Boolean")
 	$code:=This:C1470.rgx.setTarget($code).setPattern(Replace string:C233($pattern; "{C_}"; Command name:C538(1488))).substitute("var \\1 : Collection")
@@ -24,4 +25,6 @@ Function C_2var()
 	$code:=This:C1470.rgx.setTarget($code).setPattern(Replace string:C233($pattern; "{C_}"; Command name:C538(306))).substitute("var \\1 : Time")
 	$code:=This:C1470.rgx.setTarget($code).setPattern(Replace string:C233($pattern; "{C_}"; Command name:C538(1683))).substitute("var \\1")
 	
-	This:C1470.fullMethodText:=This:C1470.cursorOnFirstLine($code)
+	This:C1470.fullMethodText:=This:C1470.cursorOnFirstLine($code; True:C214)
+	
+	return This:C1470.rgx.errors.length=0
