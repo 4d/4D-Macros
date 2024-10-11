@@ -15,8 +15,6 @@
 
 # <a name="overview">Overview</a>
 
-Using macro-commands saves a lot of time during code entry.
-
 When this component is installed and loaded into your project, [its macros](#macros) are automatically available in the code editor and can be [invoked](https://developer.4d.com/docs/code-editor/write-class-method/#calling-macros):
 
 * By clicking on the [Macros button](https://developer.4d.com/docs/code-editor/write-class-method#toolbar) on the code editor toolbar.
@@ -30,7 +28,7 @@ For more information on the use and operation of macros, you can refer to the [4
 
 ## ![Static Badge](https://img.shields.io/badge/Project%20Dependencies-blue?logo=4d&link=https%3A%2F%2Fdeveloper.4d.com%2Fdocs%2FProject%2Fcomponents%2F%23loading-components)
 
-This repository is compatible with the [Project dependencies](https://developer.4d.com/docs/Project/components#monitoring-project-dependencies) feature. So you can simply integrate this component into your project by selecting `Design` > `Project dependencies` and adding `4d/4d-macros` as the GitHub® repository address in the dedicated dialog box. 
+This component is compatible with the [Project dependencies](https://developer.4d.com/docs/Project/components#monitoring-project-dependencies) feature. So you can simply integrate this component into your project by selecting `Design` > `Project dependencies` and adding `4d/4d-macros` as the GitHub® repository address in the dedicated dialog box. 
 
 >📍The project's dependency manager ensures that you are always using the latest available version of the components.
 
@@ -52,11 +50,15 @@ This repository is compatible with the [Project dependencies](https://developer.
 
 ## <a name="toVar">C_xxx -> var</a>
 
-After calling this macro, for the entire method, deprecated declaration statements such as **C_LONGINT**(…)\*, **C_TEXT**(…)\*, **C_BLOB**(…)\* ... are replaced by the new syntax **var** ... **Integer**, **var** ... **Text**, **var** ... **Blob** …
+After calling this macro, for the entire method, deprecated declaration statements such as **C_LONGINT**(…)\*, **C_TEXT**(…)\*, **C_BLOB**(…)\* ... are replaced by the new syntax **var** ... : **Integer**, **var** ... : **Text**, **var** ... : **Blob** …
+
+
+>📍 The lines **C_xx** (  ***\<method>***;  $… )\*\* & the comments are not modified
+
 
 \* With 20R7+, **C_xxx** commands are preceded by the obsolete marking prefix and are displayed as **\_O\_C_xxx**.
 
->📍 The lines **C_xx** (  ***\<method>***;  $… ) & the comments are not modified
+\*\* The **C_xx** ( ***\<method>*** ; $... ) declarations used in `COMPILER_xxx` methods to define parameters and returns for project methods are obsolete. The use of the syntax [#DECLARE](https://developer.4d.com/docs/Concepts/parameters/#declaring-parameters) dispenses with these declarations.
 
 
 For example :
