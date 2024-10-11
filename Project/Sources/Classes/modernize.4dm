@@ -25,6 +25,6 @@ Function C_2var() : Boolean
 	$code:=This:C1470.rgx.setTarget($code).setPattern(Replace string:C233($pattern; "{C_}"; Command name:C538(306))).substitute("var \\1 : Time")
 	$code:=This:C1470.rgx.setTarget($code).setPattern(Replace string:C233($pattern; "{C_}"; Command name:C538(1683))).substitute("var \\1")
 	
-	This:C1470.fullMethodText:=This:C1470.cursorOnFirstLine($code; True:C214)
+	This:C1470.fullMethodText:=This:C1470.cursorOnFirstLine($code)
 	
 	return This:C1470.rgx.errors.length=0
