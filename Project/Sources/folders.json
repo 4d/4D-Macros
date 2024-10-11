@@ -15,8 +15,8 @@
 			"_MACROS"
 		],
 		"classes": [
-			"_formatCode",
-			"_macros"
+			"macros",
+			"modernize"
 		]
 	},
 	"🪪 FORMS": {},

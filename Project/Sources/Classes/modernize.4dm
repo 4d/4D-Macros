@@ -1,11 +1,11 @@
-Class extends _macros
+Class extends macros
 
 Class constructor
 	
 	Super:C1705()
 	
 	// === === === === === === === === === === === === === === === === === === === === === === === === === ===
-	// Replace declaration lines using the old “(_o_)C_xxx(...)” syntax with the new “var ... : type”.
+	// Replace declaration lines using the old “(_o_)C_xxx(...)” syntax with the new one “var ... : type”.
 Function C_2var() : Boolean
 	
 	var $pattern : Text:="(?-msi)(?<!//)(?<!//\\s){C_}\\((?![\\w\\s]+;\\s*\\$\\{?\\d+\\}?)([^\\)]*)\\)"

@@ -75,7 +75,7 @@ Function set code($code : Text)
 	// === === === === === === === === === === === === === === === === === === === === === === === === === ===
 Function C_xx2var() : Boolean
 	
-	return cs:C1710._formatCode.new().C_2var()
+	return cs:C1710.modernize.new().C_2var()
 	
 	// MARK:- 
 	// === === === === === === === === === === === === === === === === === === === === === === === === === ===
@@ -149,4 +149,34 @@ Function tokenise()
 			
 		End if 
 	End for 
+	
+	// === === === === === === === === === === === === === === === === === === === === === === === === === ===
+/*
+Launch the “test_macro” method of the host database if it exists.
+If not, suggest to create it.
+*/
+Function test_macro() : Boolean
+	
+	var $t : Text:="test_macro"
+	
+	ARRAY TEXT:C222($_t; 0)
+	METHOD GET NAMES:C1166($_t; $t; *)
+	
+	If (Size of array:C274($_t)>0)
+		
+		return Formula from string:C1601($t; sk execute in host database:K88:5).call()
+		
+	Else 
+		
+		CONFIRM:C162("The \""+$t+"\" method doesn't exist.\r\rWould you like to create it?")
+		
+		If (Bool:C1537(OK))
+			
+			METHOD SET CODE:C1194($t; File:C1566("/RESOURCES/test_macro.4dm").getText(); *)
+			METHOD OPEN PATH:C1213($t; 12; *)
+			
+			return True:C214
+			
+		End if 
+	End if 
 	
