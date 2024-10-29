@@ -9,8 +9,6 @@
 ![Static Badge](https://img.shields.io/badge/Project%20Dependencies-blue?logo=4d&link=https%3A%2F%2Fdeveloper.4d.com%2Fdocs%2FProject%2Fcomponents%2F%23loading-components)
 <br>
 [![release][release-shield]][release-url]
-[![license][license-shield]](LICENSE.md)
-<br>
 <img src="https://img.shields.io/github/downloads/4D/4D-Macros/total"/>
 
 # <a name="overview">Overview</a>
@@ -63,13 +61,21 @@ Example transformation:
 **Before:**
 
 ```4d
-_O_C_TEXT(vDetail; $message)// _O_C_TEXT(vMessage)_O_C_LONGINT(vError)_O_C_LONGINT(myMethod; $0)
+_O_C_TEXT(vDetail; $message)
+// _O_C_TEXT(vMessage)
+_O_C_LONGINT(vError)
+
+_O_C_LONGINT(myMethod; $0)
 ```
 
 **After**:
 
 ```4d
-var vDetail; $message : Text// _O_C_TEXT(vMessage)var vError : Integer_O_C_LONGINT(myMethod; $0)
+var vDetail; $message : Text
+// _O_C_TEXT(vMessage)
+var vError : Integer
+
+_O_C_LONGINT(myMethod; $0)
 ```
 
 <br>\* With 20R7+, **C_xxx** commands are preceded by the obsolete marking prefix and are displayed as **\_O\_C_xxx**.
