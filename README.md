@@ -51,10 +51,9 @@ This component is fully compatible with [4D's Project dependencies](https://deve
 
 ## • <a name="toVar">_C\_xxx -> var_</a>
 
-After invoking this macro, the deprecated declarations such a **C_LONGINT**(…)\*, **C_TEXT**(…)\*, **C_BLOB**(…)\* ... will be replaced by the new syntax **var** ... : **Integer**, **var** ... : **Text**, **var** ... : **Blob** …
- 
->📍 The lines **C_xx** (  ***\<method>***;  $… )\*\* & the comments are not modified
+ℹ️ ***This macro is automatically executed when you open a method.***
 
+The deprecated declarations such a **C_LONGINT**(…)\*, **C_TEXT**(…)\*, **C_BLOB**(…)\* ... are replaced by the new syntax **var** ... : **Integer**, **var** ... : **Text**, **var** ... : **Blob** …
 
 Example transformation:
 
@@ -77,6 +76,8 @@ var vError : Integer
 
 _O_C_LONGINT(myMethod; $0)
 ```
+ 
+>📍 The lines **C_xx** (  ***\<method>***;  $… )\*\* & the comments are not modified
 
 <br>\* With 20R7+, **C_xxx** commands are preceded by the obsolete marking prefix and are displayed as **\_O\_C_xxx**.
 <br>\*\* The **C_xx** ( ***\<method>*** ; $... ) declarations used in `COMPILER_xxx` methods to define parameters and returns for project methods are obsolete. The use of the syntax [#DECLARE](https://developer.4d.com/docs/Concepts/parameters/#declaring-parameters) dispenses with these declarations.
