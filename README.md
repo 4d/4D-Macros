@@ -9,7 +9,7 @@
 ![Static Badge](https://img.shields.io/badge/Project%20Dependencies-blue?logo=4d&link=https%3A%2F%2Fdeveloper.4d.com%2Fdocs%2FProject%2Fcomponents%2F%23loading-components)
 <br>
 [![release][release-shield]][release-url]
-[![license][license-shield]](LICENSE)
+[![license][license-shield]](LICENSE.md)
 <br>
 <img src="https://img.shields.io/github/downloads/4D/4D-Macros/total"/>
 
