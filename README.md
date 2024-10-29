@@ -15,69 +15,72 @@
 
 # <a name="overview">Overview</a>
 
-When this component is installed and loaded into your project, [its macros](#macros) are automatically available in the code editor and can be [invoked](https://developer.4d.com/docs/code-editor/write-class-method/#calling-macros):
+The 4D-Macros component provides convenient macros that enhance code editing in 4D’s code editor. 
 
-* By clicking on the [Macros button](https://developer.4d.com/docs/code-editor/write-class-method#toolbar) on the code editor toolbar.
-* By double-clicking on their name in one of the [footer lists](https://developer.4d.com/docs/code-editor/write-class-method#lists-area) of the method editor.
-* For some of them, by selecting the name of the macro in the `“Method”` > `“Insert Macro”` submenu, or in the `“Insert Macro”` submenu of the editing zone context menu.
-* For some, in the predictive input window.
+Once installed, [these macros](#macros) are available directly in the editor, where you can use them to simplify tasks, convert code syntax, ensure consistent formatting, …. 
+
+> 💡 [Macros can be called](https://developer.4d.com/docs/code-editor/write-class-method/#calling-macros):
+><br>           - By clicking on the [Macros button](https://developer.4d.com/docs/code-editor/write-class-method#toolbar) on the code editor toolbar.
+><br>           - By double-clicking on their name in one of the [footer lists](https://developer.4d.com/docs/code-editor/write-class-method#lists-area) of the method editor.
+><br>           - For some of them, by selecting the name of the macro in the `“Method”` > `“Insert Macro”` submenu, or in the `“Insert Macro”` submenu of the editing zone context menu.
+><br>           - For some, in the predictive input window.
 
 For more information on the use and operation of macros, you can refer to the [4D documentation](https://developer.4d.com/docs/code-editor/write-class-method/#macros).
 
 # Installation
 
-## ![Static Badge](https://img.shields.io/badge/Project%20Dependencies-blue?logo=4d&link=https%3A%2F%2Fdeveloper.4d.com%2Fdocs%2FProject%2Fcomponents%2F%23loading-components)
+## Compatibility with Project Dependencies
 
-This component is compatible with the [Project dependencies](https://developer.4d.com/docs/Project/components#monitoring-project-dependencies) feature. So you can simply integrate this component into your project by selecting `Design` > `Project dependencies` and adding `4d/4d-macros` as the GitHub® repository address in the dedicated dialog box. 
+This component is fully compatible with [4D's Project dependencies](https://developer.4d.com/docs/Project/components#monitoring-project-dependencies) feature. You can add the component to your project by selecting `Design` > `Project dependencies` and adding `4d/4d-macros` as the GitHub® repository address in the dedicated dialog box. 
 
 >📍The project's dependency manager ensures that you are always using the latest available version of the components.
 
-## Earlier versions of 4D or binary database
+## Installing for Older Versions or Binary Databases
 
-1. Create a `Components` folder next to the `Project` folder of your database \*.
-2. Place the `4D Macros.4dbase` component \** in this `Components` folder.
+1. Create a `Components` folder alongside your `Project` folder \*.
+2. Place the `4D Macros.4dbase` component \** into this `Components` folder.
 
-	\* For a binary database, the `Components` folder must be located next to the structure file of your database (".4db").    
+	\* For binary databases: Locate the `Components` folder next to the structure file (.4db).  
 	\** On `macOS`, the component is a package whose ".4dbase" extension is not necessarily visible depending on your display preference settings.
 
->📍It is always preferable to use an alias file (macOS®) or shortcut file (Windows®) instead of the component and thus store the originals in a single copy. Updates will be simplified especially if you maintain several projects. 
+>📍Using an alias (macOS®) or shortcut (Windows®) file is recommended for easier updates across multiple projects.
 
-# <a name="macros">Published macros</a>
+# <a name="macros">Available Macros</a>
 
 | Name | Goal | 
 |:-----|:-----|
-| [C_xxx -> var](#toVar) | Replaces the deprecated instructions “**C_xxx**(...)” with the new syntax “**var** ... : **type**”. 
+| [C_xxx -> var](#toVar) | Replaces the deprecated commands like “**C_xxx**(...)” with the new “**var** ... : **type**” syntax. 
 
-## <a name="toVar">C_xxx -> var</a>
+## • <a name="toVar">_C\_xxx -> var_</a>
 
-After calling this macro, for the entire method, deprecated declaration statements such as **C_LONGINT**(…)\*, **C_TEXT**(…)\*, **C_BLOB**(…)\* ... are replaced by the new syntax **var** ... : **Integer**, **var** ... : **Text**, **var** ... : **Blob** …
-
-
+After invoking this macro, the deprecated declarations such a **C_LONGINT**(…)\*, **C_TEXT**(…)\*, **C_BLOB**(…)\* ... will be replaced by the new syntax **var** ... : **Integer**, **var** ... : **Text**, **var** ... : **Blob** …
+ 
 >📍 The lines **C_xx** (  ***\<method>***;  $… )\*\* & the comments are not modified
 
 
-\* With 20R7+, **C_xxx** commands are preceded by the obsolete marking prefix and are displayed as **\_O\_C_xxx**.
+Example transformation:
 
-\*\* The **C_xx** ( ***\<method>*** ; $... ) declarations used in `COMPILER_xxx` methods to define parameters and returns for project methods are obsolete. The use of the syntax [#DECLARE](https://developer.4d.com/docs/Concepts/parameters/#declaring-parameters) dispenses with these declarations.
-
-
-For example :
+**Before:**
 
 ```4d
-_O_C_TEXT(vDetail)// _O_C_TEXT(vMessage)_O_C_LONGINT(vError)_O_C_LONGINT(myMethod; $0)
+_O_C_TEXT(vDetail; $message)// _O_C_TEXT(vMessage)_O_C_LONGINT(vError)_O_C_LONGINT(myMethod; $0)
 ```
 
-will be transformed into:
+**After**:
 
 ```4d
-var vDetail : Text// _O_C_TEXT(vMessage)var vError : Integer_O_C_LONGINT(myMethod; $0)
+var vDetail; $message : Text// _O_C_TEXT(vMessage)var vError : Integer_O_C_LONGINT(myMethod; $0)
 ```
 
-# <a name="improvment">Improvements and bug fixes</a>
+<br>\* With 20R7+, **C_xxx** commands are preceded by the obsolete marking prefix and are displayed as **\_O\_C_xxx**.
+<br>\*\* The **C_xx** ( ***\<method>*** ; $... ) declarations used in `COMPILER_xxx` methods to define parameters and returns for project methods are obsolete. The use of the syntax [#DECLARE](https://developer.4d.com/docs/Concepts/parameters/#declaring-parameters) dispenses with these declarations.
 
-If you encountered a bug or have a feature request, feel free to create an issue.
-However, it is highly appreciated if you <a href="https://github.com/4d/4d-macros/issues" target="_blank">browse and search current issues</a> first.
-Found the issue? Go on and join its discussion thread.
-Not found? Go on and <a href="https://github.com/4d/4d-macros/issues/new" target="_blank">create one</a>.
+# <a name="improvment">Improvements and Bug Fixes</a>
 
-It is strongly recommended that you create a [clone of this repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) and do a [pull-request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests) for your improvements and bug fixes.
+If you encounter a bug or have a feature request, feel free to <a href="https://github.com/4d/4d-macros/issues" target="_blank">browse and search existing issues</a>. If you don't find your issue listed, go ahead and <a href="https://github.com/4d/4d-macros/issues/new" target="_blank">create a new one</a>.
+
+For those contributing directly, it’s recommended to:
+
+> 1- [Clone the repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
+    
+> 2- Make modifications and submit a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests).
