@@ -465,7 +465,7 @@ Function lookingAt() : Boolean
 	// <== <== <== <== <== <== <== <== <== <== <== <== <== <== <== <== <== <== <== <== <== <== <== <== <== <==
 Function get lastError() : Object
 	
-	If (This:C1470.errorsnull)\
+	If (This:C1470.errors#Null:C1517)\
 		 && (This:C1470.errors.length>0)
 		
 		return This:C1470.errors[This:C1470.errors.length-1]

@@ -60,6 +60,9 @@ Example transformation:
 **Before:**
 
 ```4d
+_O_C_LONGINT($1)
+_O_C_TEXT(${2})
+
 _O_C_TEXT(vDetail; $message)
 // _O_C_TEXT(vMessage)
 _O_C_LONGINT(vError)
@@ -70,6 +73,9 @@ _O_C_LONGINT(myMethod; $0)
 **After**:
 
 ```4d
+var $1 : Integer
+_O_C_TEXT(${2})
+
 var vDetail; $message : Text
 // _O_C_TEXT(vMessage)
 var vError : Integer
@@ -77,10 +83,11 @@ var vError : Integer
 _O_C_LONGINT(myMethod; $0)
 ```
  
->📍 The lines **C_xx** (  ***\<method>***;  $… )\*\* & the comments are not modified
+>📍 The lines **C_xx** (  ***\<method>***;  $… )\*\* & the comments are not modified, nor the syntax **C_xx** (${n})\*\*\*
 
 <br>\* With 20R7+, **C_xxx** commands are preceded by the obsolete marking prefix and are displayed as **\_O\_C_xxx**.
 <br>\*\* The **C_xx** ( ***\<method>*** ; $... ) declarations used in `COMPILER_xxx` methods to define parameters and returns for project methods are obsolete. The use of the syntax [#DECLARE](https://developer.4d.com/docs/Concepts/parameters/#declaring-parameters) dispenses with these declarations.
+<br>\*\*\* This syntax, which allows you to declare a variable number of parameters of the same type, is also deprecated and must be replaced by the use of the syntax [#DECLARE](https://developer.4d.com/docs/Concepts/parameters/#declaring-parameters)
 
 # <a name="improvment">Improvements and Bug Fixes</a>
 
