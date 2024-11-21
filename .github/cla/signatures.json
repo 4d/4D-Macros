@@ -1,3 +1,12 @@
 {
-  "signedContributors": []
+  "signedContributors": [
+    {
+      "name": "Jim-Kerver",
+      "id": 106150750,
+      "comment_id": 2492545706,
+      "created_at": "2024-11-21T23:15:44Z",
+      "repoId": 869038909,
+      "pullRequestNo": 2
+    }
+  ]
 }
