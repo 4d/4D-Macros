@@ -139,7 +139,7 @@ Function tokenise()
 	
 	For ($process; 1; Count tasks:C335; 1)
 		
-		Try(_O_PROCESS PROPERTIES:C336($process; $name; $state; $time; $mode; $UID; $origin))
+		PROCESS PROPERTIES:C336($process; $name; $state; $time; $mode; $UID; $origin)
 		
 		If ($origin=Design process:K36:9)
 			
@@ -157,14 +157,15 @@ If not, suggest to create it.
 */
 Function test_macro() : Boolean
 	
-	var $t : Text:="test_macro"
+	var $t : Text
+	$t:="test_macro"
 	
 	ARRAY TEXT:C222($_t; 0)
 	METHOD GET NAMES:C1166($_t; $t; *)
 	
 	If (Size of array:C274($_t)>0)
 		
-		return Formula from string:C1601($t; sk execute in host database:K88:5).call()
+		return Formula from string:C1601($t).call()
 		
 	Else 
 		
