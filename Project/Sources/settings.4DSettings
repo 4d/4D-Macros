@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><preferences stamp="5">
+<?xml version="1.0" encoding="UTF-8"?><preferences stamp="8">
 	<com.4d>
 		<compiler>
-			<options target="all"/>
+			<options syntax_file="true" target="all"/>
 		</compiler>
-		<general execute_host_database_event="true"/>
+		<general component_classStore_name="mcro" execute_host_database_event="true"/>
 		<interface>
 			<shortcuts/>
 		</interface>

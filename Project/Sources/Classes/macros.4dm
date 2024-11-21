@@ -75,7 +75,7 @@ Function set code($code : Text)
 	// === === === === === === === === === === === === === === === === === === === === === === === === === ===
 Function C_xx2var() : Boolean
 	
-	return cs:C1710.modernize.new().C_2var()
+	return cs:C1710._modernize.new().C_2var()
 	
 	// MARK:- 
 	// === === === === === === === === === === === === === === === === === === === === === === === === === ===
