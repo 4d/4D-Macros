@@ -165,7 +165,7 @@ Function test_macro() : Boolean
 	
 	If (Size of array:C274($_t)>0)
 		
-		return Formula from string:C1601($t; sk execute in host database:K88:5).call()
+		return Formula from string:C1601($t).call()
 		
 	Else 
 		
