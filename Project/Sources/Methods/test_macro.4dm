@@ -7,8 +7,8 @@ GET MACRO PARAMETER:C997(Full method text:K5:17; $fullMethod)
 var $highlighted
 GET MACRO PARAMETER:C997(Highlighted method text:K5:18; $highlighted)
 
-var $withSelection : Boolean:=Length:C16($highlighted)>0
-
+var $withSelection : Boolean
+$withSelection:=Length:C16($highlighted)>0
 
 // YOUR CODE HERE
 

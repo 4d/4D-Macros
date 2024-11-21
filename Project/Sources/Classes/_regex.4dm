@@ -147,8 +147,8 @@ Function match($start; $all : Boolean) : Boolean
 	
 	Repeat 
 		
-		var $match : Boolean:=Try(Match regex:C1019(This:C1470._pattern; This:C1470._target; $start; $pos; $len))
-		
+		var $match : Boolean
+		$match:=Match regex:C1019(This:C1470._pattern; This:C1470._target; $start; $pos; $len)
 		If (Last errors:C1799.length=0)
 			
 			If ($match)
@@ -260,11 +260,13 @@ Function extract($groups) : Collection
 	ARRAY LONGINT:C221($len; 0)
 	ARRAY LONGINT:C221($pos; 0)
 	
-	var $start : Integer:=1
+	var $start : Integer
+	$start:=1
 	
 	Repeat 
 		
-		var $match : Boolean:=Try(Match regex:C1019(This:C1470._pattern; This:C1470._target; $start; $pos; $len))
+		var $match : Boolean
+		$match:=Match regex:C1019(This:C1470._pattern; This:C1470._target; $start; $pos; $len)
 		
 		If (Last errors:C1799.length=0)
 			
@@ -272,11 +274,12 @@ Function extract($groups) : Collection
 				
 				This:C1470.success:=True:C214
 				
-				var $current : Integer:=0
-				
+				var $current : Integer
+				$current:=0
 				For ($i; 0; Size of array:C274($pos); 1)
 					
-					var $groupIndex : Integer:=$groups.length>0 ? $groups.indexOf(String:C10($current)) : $current
+					var $groupIndex : Integer
+					$groupIndex:=$groups.length>0 ? $groups.indexOf(String:C10($current)) : $current
 					
 					If ($groupIndex>=0)
 						
@@ -338,21 +341,25 @@ Function substitute($replacement : Text; $count : Integer; $position : Integer) 
 	
 	// TODO:Manage count and position
 	
-	var $backup : Text:=$replacement
+	var $backup : Text
+	$backup:=$replacement
 	
 	This:C1470._init()
 	
-	var $start : Integer:=1
+	var $start : Integer
+	$start:=1
 	
 	Repeat 
 		
-		var $match : Boolean:=Try(Match regex:C1019(This:C1470._pattern; This:C1470._target; $start; $pos; $len))
+		var $match : Boolean
+		$match:=Match regex:C1019(This:C1470._pattern; This:C1470._target; $start; $pos; $len)
 		
 		If (Last errors:C1799.length=0)
 			
 			If ($match)
 				
-				var $sub : Integer:=0
+				var $sub : Integer
+				$sub:=0
 				
 				For ($i; 0; Size of array:C274($pos); 1)
 					
@@ -415,7 +422,8 @@ Function substitute($replacement : Text; $count : Integer; $position : Integer) 
 			
 			If ($o._subpattern#0)
 				
-				var $subexpression : Text:="\\"+String:C10($o._subpattern)
+				var $subexpression : Text
+				$subexpression:="\\"+String:C10($o._subpattern)
 				
 				If (Position:C15($subexpression; $replacement)>0)
 					
@@ -454,7 +462,8 @@ Function lookingAt() : Boolean
 	
 	This:C1470._init()
 	
-	var $match : Boolean:=Try(Match regex:C1019(This:C1470._pattern; This:C1470._target; 1; *))
+	var $match : Boolean
+	$match:=Match regex:C1019(This:C1470._pattern; This:C1470._target; 1; *)
 	This:C1470.success:=(Last errors:C1799.length=0) && ($match)
 	
 	This:C1470.searchTime:=This:C1470._elapsedTime()
