@@ -44,3 +44,5 @@ Function C_2var() : Boolean
 		return This:C1470.rgx.errors.length=0
 		
 	End if 
+	
+	return True:C214
