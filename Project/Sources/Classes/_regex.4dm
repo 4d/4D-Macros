@@ -120,6 +120,7 @@ Function setPattern($pattern : Text) : cs:C1710._regex
 Function match($start; $all : Boolean) : Boolean
 	
 	var $i; $index : Integer
+	var $substring : Text
 	
 	ARRAY LONGINT:C221($pos; 0)
 	ARRAY LONGINT:C221($len; 0)
@@ -157,9 +158,10 @@ Function match($start; $all : Boolean) : Boolean
 				
 				For ($i; 0; Size of array:C274($pos); 1)
 					
+					$substring:=Substring:C12(This:C1470._target; $pos{$i}; $len{$i})
 					This:C1470.matches.push({\
 						index: $index; \
-						data: Substring:C12(This:C1470._target; $pos{$i}; $len{$i}); \
+						data: $substring; \
 						position: $pos{$i}; \
 						length: $len{$i}\
 						})
@@ -212,6 +214,7 @@ Function match($start; $all : Boolean) : Boolean
 Function extract($groups) : Collection
 	
 	var $i; $index; $indx : Integer
+	var $substring : Text
 	
 	This:C1470._init()
 	
@@ -288,9 +291,10 @@ Function extract($groups) : Collection
 							
 							If (This:C1470.matches.query("data = :1 & pos = :2"; Substring:C12(This:C1470._target; $pos{$i}; $len{$i}); $pos{$i}).pop()=Null:C1517)
 								
+								$substring:=Substring:C12(This:C1470._target; $pos{$i}; $len{$i})
 								This:C1470.matches.push({\
 									index: $indx; \
-									data: Substring:C12(This:C1470._target; $pos{$i}; $len{$i}); \
+									data: $substring; \
 									pos: $pos{$i}; \
 									len: $len{$i}\
 									})
@@ -332,7 +336,7 @@ Function extract($groups) : Collection
 	// Replace matching substrings with the replacement text.
 Function substitute($replacement : Text; $count : Integer; $position : Integer) : Text
 	
-	var $replacedText : Text
+	var $replacedText; $substring : Text
 	var $i; $index : Integer
 	var $o : Object
 	
@@ -381,10 +385,10 @@ Function substitute($replacement : Text; $count : Integer; $position : Integer) 
 					End if 
 					
 					If ($match)
-						
+						$substring:=Substring:C12(This:C1470._target; $pos{$i}; $len{$i})
 						This:C1470.matches.push({\
 							index: $index; \
-							data: Substring:C12(This:C1470._target; $pos{$i}; $len{$i}); \
+							data: $substring; \
 							pos: $pos{$i}; \
 							len: $len{$i}; \
 							_subpattern: $sub\
