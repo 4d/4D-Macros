@@ -1,22 +1,19 @@
-property title : Text
-property rgx : cs:C1710._regex
-property caret : Text
+property title:=Get window title:C450(Frontmost window:C447)
+
+// 📦 Delegates
+property rgx:=cs:C1710._regex.new()
+
+//⚠️ Make a concatenation to prevent 4D from interpreting the ‘caret’ tag in this code
+property caret:="<caret/"+">"
 
 property _highlighted : Boolean
 
 Class constructor()
 	
-	This:C1470.title:=Get window title:C450(Frontmost window:C447)
-	
-	// 📦 Delegates
-	This:C1470.rgx:=cs:C1710._regex.new()
-	
 	var $t : Text
 	GET MACRO PARAMETER:C997(Highlighted method text:K5:18; $t)
 	This:C1470._highlighted:=Length:C16($t)>0
 	
-	//⚠️ Make a concatenation to prevent 4D from interpreting the ‘caret’ tag in this code
-	This:C1470.caret:="<caret/"+">"
 	
 	// MARK:- [IN/OUT]
 	// <== <== <== <== <== <== <== <== <== <== <== <== <== <== <== <== <== <== <== <== <== <== <== <== <== <==
@@ -139,9 +136,7 @@ Function tokenise()
 	
 	For ($process; 1; Count tasks:C335; 1)
 		
-		Try(_O_PROCESS PROPERTIES:C336($process; $name; $state; $time; $mode; $UID; $origin))
-		
-		If ($origin=Design process:K36:9)
+		If (Process info:C1843($process).type=Design process:K36:9)
 			
 			POST EVENT:C467(Key down event:K17:4; Enter:K15:35; Tickcount:C458; 0; 0; 0; $process)
 			
@@ -157,23 +152,23 @@ If not, suggest to create it.
 */
 Function test_macro() : Boolean
 	
-	var $t : Text:="test_macro"
+	var $method:="test_macro"
 	
 	ARRAY TEXT:C222($_t; 0)
-	METHOD GET NAMES:C1166($_t; $t; *)
+	METHOD GET NAMES:C1166($_t; $method; *)
 	
 	If (Size of array:C274($_t)>0)
 		
-		return Formula from string:C1601($t; sk execute in host database:K88:5).call()
+		return Formula from string:C1601($method; sk execute in host database:K88:5).call()
 		
 	Else 
 		
-		CONFIRM:C162("The \""+$t+"\" method doesn't exist.\r\rWould you like to create it?")
+		CONFIRM:C162("The \""+$method+"\" method doesn't exist.\r\rWould you like to create it?")
 		
 		If (Bool:C1537(OK))
 			
-			METHOD SET CODE:C1194($t; File:C1566("/RESOURCES/test_macro.4dm").getText(); *)
-			METHOD OPEN PATH:C1213($t; 12; *)
+			METHOD SET CODE:C1194($method; File:C1566("/RESOURCES/test_macro.4dm").getText(); *)
+			METHOD OPEN PATH:C1213($method; 12; *)
 			
 			return True:C214
 			

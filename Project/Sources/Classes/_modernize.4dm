@@ -8,8 +8,8 @@ Class constructor
 	// Replace declaration lines using the old “(_o_)C_xxx(...)” syntax with the new one “var ... : type”.
 Function C_2var() : Boolean
 	
-	var $pattern : Text:="(?-msi)(?<!//)(?<!//\\s){C_}\\((?![\\w\\s]+;\\s*\\$\\{?\\d+\\}?)([^{\\)]*)\\)"
-	var $code : Text:=This:C1470.fullMethodText
+	var $pattern:="(?-msi)(?<!//)(?<!//\\s){C_}\\((?![\\w\\s]+;\\s*\\$\\{?\\d+\\}?)([^{\\)]*)\\)"
+	var $code:=This:C1470.fullMethodText
 	
 	This:C1470.rgx.setTarget($code)
 	
